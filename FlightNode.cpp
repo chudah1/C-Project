@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <stdexcept>
 
 
 class FlightNode{
@@ -44,10 +45,13 @@ public:
         std::string startCity = "";
         std::string destinationCity="";
         try {
-            
+            ifstream inputFile("london-banjul.txt");
+            getline(inputFile, startCity, ',');
+            getline(inputFile, destinationCity, ',');
         }
-        catch (...) {
-            
+        catch (std::invalid_argument& e) {
+            cerr<<e.what() <<endl;
+            exit(-1);
         }
         std::vector<std::string> solution;
         std::string path="";
@@ -61,10 +65,21 @@ public:
         std::reverse(solution.begin(), solution.end());
         
         try{
-            
+            ofstream pathFile(startCity + "-" + destinationCity +"_" + "output.txt");
+            int number = 1;
+            for (auto &solutionpath : solution) {
+                pathFile<<(number +". " + solutionpath);
+                number++;
+            }
+            pathFile<<"Total flights: " + solution.size();
+            pathFile<<"Total additional stops: " + noOfStops;
+            pathFile<<"Optimality Criteria: Flights";
+            pathFile.close();
+
         }
-        catch (...) {
-            
+        catch (std::invalid_argument& e) {
+            cerr<<e.what() <<endl;
+            exit(-1);
         }
 
     }

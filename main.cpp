@@ -23,15 +23,18 @@ private:
     static std::string destinationAirport;
 
 
+/* A static method that returns a vector of routes. */
 public:
     static std::vector<Route> getSuccessorStates(std::string state){
         return route.at(state);
     }
     static bool foundDestination(std::string state){
-        if (Airports.count(state)==0){
+        if (Airports.count(destinationAirport)==0){
             cout<<"Specified destination does not exist" <<endl;
             exit(-1);
         }
+        airportsInDest = Airports.at(destinationAirport);
+        return std::find(airportsInDest.begin(), airportsInDest.end(), state)!=airportsInDest.end();
     }
 
 
@@ -61,23 +64,24 @@ public:
                 int nstops = succState.getStops();
                 //
                 FlightNode childNode= *new FlightNode(airlineCode, destinationAirportCode, nstops+currentAirport.getNoOfStops(), &currentAirport);
-                if (visited.count(childNode.getState())==0 && frontier.empty()){
-                    if (foundDestination(childNode.getState())) childNode.solutionPath();
+                if (visited.count(childNode.getState())==0 && frontier.empty()){ //error
+                    if (foundDestination(childNode.getState())) {
+                        childNode.solutionPath();
+                    }
                     frontier.push(childNode);
                 }
             }
         }
 
     }
-    int main(){
-        const std::string REGEX= "\\s*,\\s*";
-        const std::string REPLACE = ",";
-        std::ifstream inputFile("london-banjul.txt");
-
-
-        return 0;
-
-    }
-
-
 };
+
+int main(){
+    const std::string REGEX= "\\s*,\\s*";
+    const std::string REPLACE = ",";
+    std::ifstream inputFile("london-banjul.txt");
+
+
+    return 0;
+
+}
