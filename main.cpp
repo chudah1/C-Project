@@ -76,12 +76,12 @@ public:
     }
 };
 
-//int main(){
-//    const std::string REGEX= "\\s*,\\s*";
-//    const std::string REPLACE = ",";
-//    std::ifstream inputFile("london-banjul.txt");
-//
-//
-//    return 0;
-//
-//}
+int main(){
+    const std::string REGEX= "\\s*,\\s*";
+    const std::string REPLACE = ",";
+    std::ifstream inputFile("london-banjul.txt");
+
+
+    return 0;
+
+}

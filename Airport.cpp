@@ -15,7 +15,7 @@ public:
         unordered_map<string, vector<string>> airportLocation;
         const string REGEX= ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
         string readLine;
-        ifstream ReadFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\airports.csv");
+        ifstream ReadFile("airports.csv");
         while (getline(ReadFile, readLine)){
             vector<string> data;
             stringstream iss(readLine);
