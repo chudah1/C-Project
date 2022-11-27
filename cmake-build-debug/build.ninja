@@ -49,20 +49,8 @@ cmake_ninja_workdir = C$:/Users/USER/CLionProjects/ROUTE$ PROJECT/cmake-build-de
 
 build cmake_object_order_depends_target_ROUTE_PROJECT: phony || CMakeFiles/ROUTE_PROJECT.dir
 
-build CMakeFiles/ROUTE_PROJECT.dir/main.cpp.obj: CXX_COMPILER__ROUTE_PROJECT_Debug C$:/Users/USER/CLionProjects/ROUTE$ PROJECT/main.cpp || cmake_object_order_depends_target_ROUTE_PROJECT
-  DEP_FILE = CMakeFiles\ROUTE_PROJECT.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\ROUTE_PROJECT.dir
-  OBJECT_FILE_DIR = CMakeFiles\ROUTE_PROJECT.dir
-
-build CMakeFiles/ROUTE_PROJECT.dir/Route.cpp.obj: CXX_COMPILER__ROUTE_PROJECT_Debug C$:/Users/USER/CLionProjects/ROUTE$ PROJECT/Route.cpp || cmake_object_order_depends_target_ROUTE_PROJECT
-  DEP_FILE = CMakeFiles\ROUTE_PROJECT.dir\Route.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\ROUTE_PROJECT.dir
-  OBJECT_FILE_DIR = CMakeFiles\ROUTE_PROJECT.dir
-
-build CMakeFiles/ROUTE_PROJECT.dir/BFS.cpp.obj: CXX_COMPILER__ROUTE_PROJECT_Debug C$:/Users/USER/CLionProjects/ROUTE$ PROJECT/BFS.cpp || cmake_object_order_depends_target_ROUTE_PROJECT
-  DEP_FILE = CMakeFiles\ROUTE_PROJECT.dir\BFS.cpp.obj.d
+build CMakeFiles/ROUTE_PROJECT.dir/FlightNode.cpp.obj: CXX_COMPILER__ROUTE_PROJECT_Debug C$:/Users/USER/CLionProjects/ROUTE$ PROJECT/FlightNode.cpp || cmake_object_order_depends_target_ROUTE_PROJECT
+  DEP_FILE = CMakeFiles\ROUTE_PROJECT.dir\FlightNode.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\ROUTE_PROJECT.dir
   OBJECT_FILE_DIR = CMakeFiles\ROUTE_PROJECT.dir
@@ -75,7 +63,7 @@ build CMakeFiles/ROUTE_PROJECT.dir/BFS.cpp.obj: CXX_COMPILER__ROUTE_PROJECT_Debu
 #############################################
 # Link the executable ROUTE_PROJECT.exe
 
-build ROUTE_PROJECT.exe: CXX_EXECUTABLE_LINKER__ROUTE_PROJECT_Debug CMakeFiles/ROUTE_PROJECT.dir/main.cpp.obj CMakeFiles/ROUTE_PROJECT.dir/Route.cpp.obj CMakeFiles/ROUTE_PROJECT.dir/BFS.cpp.obj
+build ROUTE_PROJECT.exe: CXX_EXECUTABLE_LINKER__ROUTE_PROJECT_Debug CMakeFiles/ROUTE_PROJECT.dir/FlightNode.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ROUTE_PROJECT.dir

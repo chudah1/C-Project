@@ -37,19 +37,17 @@ public:
         /* Creating a map of string and vector of Route. */
         unordered_map <string, vector<Route>> routeMap;
         string readLine;
-        ifstream ReadFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\routes.csv");
+        ifstream ReadFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\routes.csv");
         /* Reading the file line by line. */
         while (getline(ReadFile, readLine)) {
-            string data[8];
-            int i = 0;
-            string s;
-            istringstream iss(readLine);
-            while (getline(iss, s, ',')) {
-                data[i] = s.c_str();
-                ++i;
+           vector<string> data;
+            stringstream iss(readLine);
+            while (iss.good()) {
+                string splitLine;
+                getline(iss, splitLine, ',');
+                data.push_back(splitLine);
             }
             string sourceAirportCode = data[2];
-            cout<<sourceAirportCode;
             string destinationAirportCode = data[4];
             string airlineId = data[0];
             int noOfStops = stoi(data[7]);

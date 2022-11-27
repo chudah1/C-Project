@@ -15,19 +15,17 @@ public:
         unordered_map<string, vector<string>> airportLocation;
         const string REGEX= ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
         string readLine;
-        ifstream ReadFile("airports.csv");
+        ifstream ReadFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\airports.csv");
         while (getline(ReadFile, readLine)){
-            string data[14];
-            int i = 0;
-            string s;
-            istringstream iss(readLine);
-            while (getline(iss,s,',')) {
-                data[i] =s.c_str();
-                ++i;
+            vector<string> data;
+            stringstream iss(readLine);
+            while (iss.good()) {
+                string splitLine;
+                getline(iss, splitLine, ',');
+                data.push_back(splitLine);
             }
             if (data[4] == "\\N") continue;
             string airportCode = data[4];
-            cout<<airportCode;
             string cityCountry = data[2] + ',' + data[3];
             if(airportLocation.count(cityCountry)==0){
                 airportLocation[cityCountry];
@@ -42,3 +40,12 @@ public:
     }
 
 };
+//int main() {
+//    unordered_map<string, vector<string>> airport = Airport::readAirports();
+//    cout<<airport.size();
+//    for(auto &it:airport ){
+//        cout<<it.first <<endl;
+//    }
+//    return 0;
+//}
+

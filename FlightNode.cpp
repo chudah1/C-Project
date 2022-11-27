@@ -2,7 +2,9 @@
 #include <string>
 #include <algorithm>
 #include <stdexcept>
-
+#include <fstream>
+#include <vector>
+#include <sstream>
 
 class FlightNode{
     private:
@@ -45,12 +47,23 @@ public:
         std::string startCity = "";
         std::string destinationCity="";
         try {
-            ifstream inputFile("london-banjul.txt");
-            getline(inputFile, startCity, ',');
-            getline(inputFile, destinationCity, ',');
+            std::string readLine;
+            std::ifstream inputFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\london-banjul.txt");
+            std::vector<std::string> inputData;
+            while (getline(inputFile, readLine)) {
+                inputData.push_back(readLine);
+            }
+            std::stringstream ss(inputData[0]);
+            std::getline(ss, readLine, ',');
+            inputData[0] = readLine;
+            startCity = inputData[0];
+            std::stringstream s(inputData[1]);
+            std::getline(s, readLine, ',');
+            inputData[1] = readLine;
+            destinationCity = inputData[1];
         }
         catch (std::invalid_argument& e) {
-            cerr<<e.what() <<endl;
+            std::cerr<<e.what() <<std::endl;
             exit(-1);
         }
         std::vector<std::string> solution;
@@ -65,7 +78,7 @@ public:
         std::reverse(solution.begin(), solution.end());
         
         try{
-            ofstream pathFile(startCity + "-" + destinationCity +"_" + "output.txt");
+            std::ofstream pathFile(startCity + "-" + destinationCity +"_" + "output.txt");
             int number = 1;
             for (auto &solutionpath : solution) {
                 pathFile<<(number +". " + solutionpath);
@@ -78,7 +91,7 @@ public:
 
         }
         catch (std::invalid_argument& e) {
-            cerr<<e.what() <<endl;
+            std::cerr<<e.what() <<std::endl;
             exit(-1);
         }
 
@@ -86,4 +99,23 @@ public:
 
 
 };
+
+int main(){
+    std::string readLine;
+    std::string startCity;
+    std::string destinationCity;
+    std::ifstream inputFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\london-banjul.txt");
+    std::vector<std::string> inputData;
+    while (getline(inputFile, readLine)) {
+        inputData.push_back(readLine);
+    }
+    std::stringstream ss(inputData[0]);
+    std::getline(ss, readLine, ',');
+    inputData[0] = readLine;
+    startCity = inputData[0];
+    std::stringstream s(inputData[1]);
+    std::getline(s, readLine, ',');
+    inputData[1] = readLine;
+    destinationCity = inputData[1];
+}
 
