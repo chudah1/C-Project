@@ -37,7 +37,7 @@ public:
         /* Creating a map of string and vector of Route. */
         unordered_map <string, vector<Route>> routeMap;
         string readLine;
-        ifstream ReadFile("C:\\Users\\USER\\CLionProjects\\ROUTE PROJECT\\routes.csv");
+        ifstream ReadFile("routes.csv");
         /* Reading the file line by line. */
         while (getline(ReadFile, readLine)) {
            vector<string> data;

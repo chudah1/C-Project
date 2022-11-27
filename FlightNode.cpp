@@ -43,9 +43,16 @@ public:
         return sourceAirport;
     }
 
+    bool operator==(FlightNode rhs)  {
+        return airlineCode == rhs.airlineCode &&
+               state == rhs.state &&
+               noOfStops == rhs.noOfStops &&
+               sourceAirport == rhs.sourceAirport;
+    }
+
     void solutionPath() {
-        std::string startCity = "";
-        std::string destinationCity = "";
+        std::string startCity;
+        std::string destinationCity;
         try {
             std::string readLine;
             std::ifstream inputFile("london-banjul.txt");
@@ -67,7 +74,7 @@ public:
             exit(-1);
         }
         std::vector<std::string> solution;
-        std::string path = "";
+        std::string path;
         FlightNode current = *this;
 
         while (current.sourceAirport != NULL) {
@@ -95,6 +102,8 @@ public:
             std::cerr << e.what() << std::endl;
             exit(-1);
         }
+
+
 
     }
 

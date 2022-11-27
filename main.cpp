@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
+#include <deque>
 #include <fstream>
 #include <sstream>
 #include "Route.cpp"
@@ -37,24 +38,31 @@ public:
         return std::find(airportsInDest.begin(), airportsInDest.end(), state)!=airportsInDest.end();
     }
 
+    static bool contains(FlightNode node, deque<FlightNode> frontier) {
+        for (auto & i : frontier) {
+            if (node == i) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     static void bfs(std::string startCountryCity){
         std::vector<std::string> availableAirports = Airports.at(startCountryCity);
-        std::queue<FlightNode> frontier;
+        std::deque<FlightNode> frontier;
         std::unordered_set<std::string> visited;
         for (auto &state: availableAirports){
             FlightNode startNode = *new FlightNode(state);
             if (foundDestination(startNode.getState())) {
                 startNode.solutionPath();
             }
-            frontier.push(startNode);
+            frontier.push_back(startNode);
 
         }
-
         while (frontier.size()>0){
             FlightNode currentAirport = frontier.front();
-            frontier.pop();
+            frontier.pop_front();
             visited.insert(currentAirport.getState());
             if (route.count(currentAirport.getState())==0) continue;
             std::vector<Route> succStates = getSuccessorStates(currentAirport.getState());
@@ -64,11 +72,11 @@ public:
                 int nstops = succState.getStops();
                 //
                 FlightNode childNode= *new FlightNode(airlineCode, destinationAirportCode, nstops+currentAirport.getNoOfStops(), &currentAirport);
-                if (visited.count(childNode.getState())==0 && frontier.empty()){ //error
+                if (visited.count(childNode.getState())==0 && !contains(childNode,frontier)){
                     if (foundDestination(childNode.getState())) {
                         childNode.solutionPath();
                     }
-                    frontier.push(childNode);
+                    frontier.push_back(childNode);
                 }
             }
         }

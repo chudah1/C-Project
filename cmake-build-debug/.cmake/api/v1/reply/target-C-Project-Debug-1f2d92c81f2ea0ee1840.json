@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "ROUTE_PROJECT.exe"
+			"path" : "C-Project.exe"
 		},
 		{
-			"path" : "ROUTE_PROJECT.pdb"
+			"path" : "C-Project.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -59,7 +59,7 @@
 			]
 		}
 	],
-	"id" : "ROUTE_PROJECT::@6890427a1f51a3e7e1df",
+	"id" : "C-Project::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -79,8 +79,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "ROUTE_PROJECT",
-	"nameOnDisk" : "ROUTE_PROJECT.exe",
+	"name" : "C-Project",
+	"nameOnDisk" : "C-Project.exe",
 	"paths" : 
 	{
 		"build" : ".",
