@@ -43,11 +43,15 @@ public:
         return sourceAirport;
     }
 
-    bool operator==(FlightNode rhs) {
+    bool operator==(const FlightNode &rhs) const {
         return airlineCode == rhs.airlineCode &&
                state == rhs.state &&
                noOfStops == rhs.noOfStops &&
                sourceAirport == rhs.sourceAirport;
+    }
+
+    bool operator!=(const FlightNode &rhs) const {
+        return !(rhs == *this);
     }
 
     void solutionPath() {

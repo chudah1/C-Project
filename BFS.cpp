@@ -4,6 +4,7 @@
 #include <vector>
 #include <deque>
 #include <set>
+#include <algorithm>
 #include "Route.cpp"
 #include "Airport.cpp"
 #include "FlightNode.cpp"
@@ -36,7 +37,6 @@ public:
             exit(-1);
         }
         airportsInDest = Airports.at(destinationAirport);
-//        return std::find(airportsInDest.begin(), airportsInDest.end(), state) != airportsInDest.end();
         return contains(state, airportsInDest);
     }
 
@@ -76,12 +76,7 @@ public:
         while (!frontier.empty()) {
             FlightNode currentAirport = frontier.front();
             frontier.pop_front();
-//            if (visited.count(currentAirport.getState()) == 0) {
-//                visited.insert(currentAirport.getState());
-//            }
-           for (auto &i: visited) {
-               cout << i << endl;
-           }
+            visited.insert(currentAirport.getState());
 
             if (route.count(currentAirport.getState()) == 0) continue;
             std::vector<Route> succStates = getSuccessorStates(currentAirport.getState());
@@ -92,7 +87,7 @@ public:
 
                 FlightNode childNode = *new FlightNode(airlineCode, destinationAirportCode,
                                                        nstops + currentAirport.getNoOfStops(), &currentAirport);
-                if (visited.count(childNode.getState())==0 && !contains(childNode, frontier)) {
+                if (visited.count(childNode.getState())==0 && !contains(childNode, frontier)){
                     if (foundDestination(childNode.getState())) {
                         childNode.solutionPath();
                         return;
