@@ -90,12 +90,12 @@ public:
             std::ofstream pathFile(startCity + "-" + destinationCity + "_" + "output.txt");
             int number = 1;
             for (auto &solutionpath: solution) {
-                pathFile << (std::to_string(number) + ". " + solutionpath);
+                pathFile << (std::to_string(number) + ". " + solutionpath) + "\n";
                 number++;
             }
-            pathFile << "Total flights: " + std::to_string(solution.size());
-            pathFile << "Total additional stops: " + std::to_string(noOfStops);
-            pathFile << "Optimality Criteria: Flights";
+            pathFile << "Total flights: " + std::to_string(solution.size()) + "\n";
+            pathFile << "Total additional stops: " + std::to_string(noOfStops) + "\n";
+            pathFile << "Optimality Criteria: Flights \n";
             pathFile.close();
 
         }

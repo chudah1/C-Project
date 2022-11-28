@@ -152,6 +152,30 @@ Airport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Airport.cpp.s
 .PHONY : Airport.cpp.s
 
+BFS.obj: BFS.cpp.obj
+.PHONY : BFS.obj
+
+# target to build an object file
+BFS.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/BFS.cpp.obj
+.PHONY : BFS.cpp.obj
+
+BFS.i: BFS.cpp.i
+.PHONY : BFS.i
+
+# target to preprocess a source file
+BFS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/BFS.cpp.i
+.PHONY : BFS.cpp.i
+
+BFS.s: BFS.cpp.s
+.PHONY : BFS.s
+
+# target to generate assembly for a file
+BFS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/BFS.cpp.s
+.PHONY : BFS.cpp.s
+
 FlightNode.obj: FlightNode.cpp.obj
 .PHONY : FlightNode.obj
 
@@ -236,6 +260,9 @@ help:
 	@echo ... Airport.obj
 	@echo ... Airport.i
 	@echo ... Airport.s
+	@echo ... BFS.obj
+	@echo ... BFS.i
+	@echo ... BFS.s
 	@echo ... FlightNode.obj
 	@echo ... FlightNode.i
 	@echo ... FlightNode.s

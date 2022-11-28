@@ -1,0 +1,4 @@
+1. 2J from DKR to BKO 0 stops
+Total flights: 1
+Total additional stops: 0
+Optimality Criteria: Flights 

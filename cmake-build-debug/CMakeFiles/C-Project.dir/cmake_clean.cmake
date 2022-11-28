@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "C-Project.pdb"
   "CMakeFiles/C-Project.dir/Airport.cpp.obj"
   "CMakeFiles/C-Project.dir/Airport.cpp.obj.d"
+  "CMakeFiles/C-Project.dir/BFS.cpp.obj"
+  "CMakeFiles/C-Project.dir/BFS.cpp.obj.d"
   "CMakeFiles/C-Project.dir/FlightNode.cpp.obj"
   "CMakeFiles/C-Project.dir/FlightNode.cpp.obj.d"
   "CMakeFiles/C-Project.dir/Route.cpp.obj"

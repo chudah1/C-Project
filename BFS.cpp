@@ -3,10 +3,10 @@
 #include <unordered_map>
 #include <vector>
 #include <deque>
-#include <fstream>
-#include <sstream>
-#include <unordered_set>
-
+#include <set>
+#include "Route.cpp"
+#include "Airport.cpp"
+#include "FlightNode.cpp"
 
 class Main {
 public:
@@ -16,8 +16,8 @@ public:
     std::unordered_map<std::string, std::vector<Route>> route;
     std::unordered_map<std::string, std::vector<std::string>> Airports;
 
-    Main(std::string destinationAirport) {
-        this->destinationAirport = destinationAirport;
+    Main(std::string destination) {
+        destinationAirport = destination;
         Airports = Airport::readAirports();
         route = Route::readRoutes();
     }
@@ -36,10 +36,20 @@ public:
             exit(-1);
         }
         airportsInDest = Airports.at(destinationAirport);
-        return std::find(airportsInDest.begin(), airportsInDest.end(), state) != airportsInDest.end();
+//        return std::find(airportsInDest.begin(), airportsInDest.end(), state) != airportsInDest.end();
+        return contains(state, airportsInDest);
     }
 
-    bool contains(FlightNode node, deque <FlightNode> frontier) {
+    bool contains(std::string state, vector<std::string> airports) {
+        for (auto &i: airports) {
+            if (state == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool contains(FlightNode node, deque<FlightNode> frontier) {
         for (auto &i: frontier) {
             if (node == i) {
                 return true;
@@ -53,12 +63,12 @@ public:
         std::vector<std::string> availableAirports = Airports.at(startCountryCity);
 
         std::deque<FlightNode> frontier;
-        std::unordered_set<std::string> visited;
+        std::set<std::string> visited;
         for (auto &state: availableAirports) {
             FlightNode startNode = *new FlightNode(state);
-
             if (foundDestination(startNode.getState())) {
                 startNode.solutionPath();
+                return;
             }
             frontier.push_back(startNode);
         }
@@ -66,24 +76,30 @@ public:
         while (!frontier.empty()) {
             FlightNode currentAirport = frontier.front();
             frontier.pop_front();
-            visited.insert(currentAirport.getState());
+//            if (visited.count(currentAirport.getState()) == 0) {
+//                visited.insert(currentAirport.getState());
+//            }
+           for (auto &i: visited) {
+               cout << i << endl;
+           }
+
             if (route.count(currentAirport.getState()) == 0) continue;
             std::vector<Route> succStates = getSuccessorStates(currentAirport.getState());
             for (auto &succState: succStates) {
                 std::string destinationAirportCode = succState.getDestinationAirportCode();
                 std::string airlineCode = succState.getAirlineCode();
                 int nstops = succState.getStops();
-                //
+
                 FlightNode childNode = *new FlightNode(airlineCode, destinationAirportCode,
                                                        nstops + currentAirport.getNoOfStops(), &currentAirport);
-                if (visited.count(childNode.getState()) == 0 && !contains(childNode, frontier)) {
+                if (visited.count(childNode.getState())==0 && !contains(childNode, frontier)) {
                     if (foundDestination(childNode.getState())) {
                         childNode.solutionPath();
+                        return;
                     }
                     frontier.push_back(childNode);
                 }
             }
         }
-
     }
 };

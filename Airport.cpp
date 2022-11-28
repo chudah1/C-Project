@@ -13,12 +13,13 @@ using namespace std;
 class Airport {
 public:
     static unordered_map<string, vector<string>> readAirports() {
-        unordered_map<string, vector<string>> airportLocation;
+        unordered_map <string, vector<string>> airportLocation;
         const string REGEX = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
         string readLine;
-        ifstream ReadFile("C:\\Users\\ohene\\OneDrive\\Documents\\School Work\\Assignments\\Intermediate Computer Programming\\C++\\C-Project\\airports.csv");
+        ifstream ReadFile(
+                R"(C:\Users\ohene\OneDrive\Documents\School Work\Assignments\Intermediate Computer Programming\C++\C-Project\airports.csv)");
         while (getline(ReadFile, readLine)) {
-            vector<string> data;
+            vector <string> data;
             stringstream iss(readLine);
             while (iss.good()) {
                 string splitLine;

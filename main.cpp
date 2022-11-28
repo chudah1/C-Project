@@ -1,8 +1,4 @@
 #include <string>
-#include <iostream>
-#include "Route.cpp"
-#include "FlightNode.cpp"
-#include "Airport.cpp"
 #include "BFS.cpp"
 
 
@@ -13,10 +9,8 @@ int main() {
     string destinationAirport;
     std::getline(inputFile, startAirport);
     std::getline(inputFile, destinationAirport);
-
     Main test(destinationAirport);
     test.bfs(startAirport);
-
     return 0;
 
 }
