@@ -128,6 +128,78 @@ C-Project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/build
 .PHONY : C-Project/fast
 
+Airport.obj: Airport.cpp.obj
+.PHONY : Airport.obj
+
+# target to build an object file
+Airport.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Airport.cpp.obj
+.PHONY : Airport.cpp.obj
+
+Airport.i: Airport.cpp.i
+.PHONY : Airport.i
+
+# target to preprocess a source file
+Airport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Airport.cpp.i
+.PHONY : Airport.cpp.i
+
+Airport.s: Airport.cpp.s
+.PHONY : Airport.s
+
+# target to generate assembly for a file
+Airport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Airport.cpp.s
+.PHONY : Airport.cpp.s
+
+FlightNode.obj: FlightNode.cpp.obj
+.PHONY : FlightNode.obj
+
+# target to build an object file
+FlightNode.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/FlightNode.cpp.obj
+.PHONY : FlightNode.cpp.obj
+
+FlightNode.i: FlightNode.cpp.i
+.PHONY : FlightNode.i
+
+# target to preprocess a source file
+FlightNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/FlightNode.cpp.i
+.PHONY : FlightNode.cpp.i
+
+FlightNode.s: FlightNode.cpp.s
+.PHONY : FlightNode.s
+
+# target to generate assembly for a file
+FlightNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/FlightNode.cpp.s
+.PHONY : FlightNode.cpp.s
+
+Route.obj: Route.cpp.obj
+.PHONY : Route.obj
+
+# target to build an object file
+Route.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Route.cpp.obj
+.PHONY : Route.cpp.obj
+
+Route.i: Route.cpp.i
+.PHONY : Route.i
+
+# target to preprocess a source file
+Route.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Route.cpp.i
+.PHONY : Route.cpp.i
+
+Route.s: Route.cpp.s
+.PHONY : Route.s
+
+# target to generate assembly for a file
+Route.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C-Project.dir\build.make CMakeFiles/C-Project.dir/Route.cpp.s
+.PHONY : Route.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +233,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... C-Project
+	@echo ... Airport.obj
+	@echo ... Airport.i
+	@echo ... Airport.s
+	@echo ... FlightNode.obj
+	@echo ... FlightNode.i
+	@echo ... FlightNode.s
+	@echo ... Route.obj
+	@echo ... Route.i
+	@echo ... Route.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

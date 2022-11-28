@@ -43,7 +43,7 @@ public:
         return sourceAirport;
     }
 
-    bool operator==(FlightNode rhs)  {
+    bool operator==(FlightNode rhs) {
         return airlineCode == rhs.airlineCode &&
                state == rhs.state &&
                noOfStops == rhs.noOfStops &&
@@ -55,7 +55,8 @@ public:
         std::string destinationCity;
         try {
             std::string readLine;
-            std::ifstream inputFile("london-banjul.txt");
+            std::ifstream inputFile(
+                    R"(C:\Users\ohene\OneDrive\Documents\School Work\Assignments\Intermediate Computer Programming\C++\C-Project\london-banjul.txt)");
             std::vector<std::string> inputData;
             while (getline(inputFile, readLine)) {
                 inputData.push_back(readLine);
@@ -102,12 +103,7 @@ public:
             std::cerr << e.what() << std::endl;
             exit(-1);
         }
-
-
-
     }
-
-
 };
 
 
