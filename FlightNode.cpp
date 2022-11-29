@@ -5,15 +5,19 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <memory>
+
+using std::shared_ptr;
+using std::make_shared;
 
 class FlightNode {
 private:
     std::string airlineCode;
     std::string state;
     int noOfStops;
-    FlightNode *sourceAirport;
+    shared_ptr<FlightNode> sourceAirport;
 public:
-    FlightNode(std::string AirlineCode, std::string State, int stops, FlightNode *parent) {
+    FlightNode(std::string AirlineCode, std::string State, int stops,  shared_ptr<FlightNode> parent) {
         this->airlineCode = AirlineCode;
         this->state = State;
         this->noOfStops = stops;
@@ -59,7 +63,7 @@ public:
      *
      * @return The sourceAirport variable is being returned.
      */
-    FlightNode *getSourceAirport() {
+    shared_ptr<FlightNode> getSourceAirport() {
             return this->sourceAirport;
     }
 
@@ -116,19 +120,17 @@ public:
         }
         std::vector<std::string> solution;
         std::string path;
-        FlightNode* current = this;
-        int c = 0;
+        shared_ptr<FlightNode> current = make_shared<FlightNode>(this->airlineCode, this->state, this->noOfStops,
+                                                                 this->sourceAirport);
         /* Getting the source airport of the current node and then pushing it to the solution vector. */
-        while (current != nullptr && c < 5) {
-            path = current->getAirlineCode() + " from " + current->getSourceAirport()->getState() + " to " + current->state + " " + std::to_string(current->noOfStops) + " stops";
+        while (current->sourceAirport != nullptr) {
+            path = current->getAirlineCode() + " from " + current->getSourceAirport()->getState() + " to " +
+                   current->state + " " + std::to_string(current->noOfStops) + " stops";
+            std::cout << path << std::endl;
             solution.push_back(path);
-            std::cout<<path <<std::endl;
             current = current->sourceAirport;
-            if (current == current->sourceAirport){
-                std::cout << "Equal";
-            }
-            c ++;
         }
+
         std::reverse(solution.begin(), solution.end());
         try {
             std::ofstream pathFile(startCity + "-" + destinationCity + "_" + "output.txt");
@@ -147,7 +149,7 @@ public:
             std::cerr << e.what() << std::endl;
             exit(-1);
         }
-    }
+  }
 };
 
 

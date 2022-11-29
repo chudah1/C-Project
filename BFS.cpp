@@ -6,8 +6,12 @@
 #include <set>
 #include <algorithm>
 #include "Route.cpp"
+#include <memory>
 #include "Airport.cpp"
 #include "FlightNode.cpp"
+
+using std::shared_ptr;
+using std::make_shared;
 
 class Main {
 public:
@@ -76,35 +80,33 @@ public:
     void bfs(std::string startCountryCity) {
         std::vector<std::string> availableAirports = Airports.at(startCountryCity);
 
-        std::deque<FlightNode> frontier;
+        std::deque<shared_ptr<FlightNode>> frontier;
         std::set<std::string> visited;
         for (auto &state: availableAirports) {
-            FlightNode startNode = FlightNode(state);
-            if (foundDestination(startNode.getState())) {
-                startNode.solutionPath();
+            shared_ptr<FlightNode> startNode = std::make_shared<FlightNode>(state);
+            if (foundDestination(startNode->getState())) {
+                startNode->solutionPath();
                 return;
             }
             frontier.push_back(startNode);
         }
-        int c = 0;
         while (!frontier.empty()) {
-            FlightNode currentAirport = frontier.front();
+            shared_ptr<FlightNode> currentAirport = frontier.front();
             frontier.pop_front();
-            visited.insert(currentAirport.getState());
+            visited.insert(currentAirport->getState());
 
-            if (route.count(currentAirport.getState()) == 0) continue;
-            std::vector<Route> succStates = getSuccessorStates(currentAirport.getState());
-            std::cout << "Parent: " << currentAirport.getState() << endl;
+            if (route.count(currentAirport->getState()) == 0) continue;
+            std::vector<Route> succStates = getSuccessorStates(currentAirport->getState());
             for (auto succState: succStates) {
                 std::string destinationAirportCode = succState.getDestinationAirportCode();
                 std::string airlineCode = succState.getAirlineCode();
                 int nstops = succState.getStops();
 
-                FlightNode childNode = FlightNode(airlineCode, destinationAirportCode,nstops + currentAirport.getNoOfStops(), &currentAirport);
-                if (visited.count(childNode.getState())==0 && !contains(childNode, frontier)){
-                    if (foundDestination(childNode.getState())) {
-                        cout << "found destination";
-                        childNode.solutionPath();
+                shared_ptr<FlightNode> childNode = make_shared<FlightNode>(airlineCode, destinationAirportCode,nstops + currentAirport->getNoOfStops(), currentAirport);
+                if (visited.count(childNode->getState())==0){
+                    if (foundDestination(childNode->getState())) {
+                        cout << "found destination\n";
+                        childNode->solutionPath();
                         return;
                     }
                     frontier.push_back(childNode);

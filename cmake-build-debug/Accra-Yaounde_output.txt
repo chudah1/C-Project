@@ -1,8 +1,0 @@
-1. AT from CMN to CMN 0 stops
-2. AT from CMN to CMN 0 stops
-3. AT from CMN to CMN 0 stops
-4. AT from CMN to CMN 0 stops
-5. AT from CMN to NSI 0 stops
-Total flights: 5
-Total additional stops: 0
-Optimality Criteria: Flights 
