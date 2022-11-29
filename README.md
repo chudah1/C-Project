@@ -22,6 +22,8 @@
 clone repo
 **git clone** ` 
 run `g++ main.cpp Node.cpp Route.cpp Airport.cpp -o output`
+
+
 run `./output`
 
 Absolute paths were used in this project, hence, after cloning, ensure that the paths are changed to the current working directory.
