@@ -20,8 +20,8 @@
 
 ### NB
 clone repo
-**git clone** ` 
-run `g++ main.cpp Node.cpp Route.cpp Airport.cpp -o output`
+**git clone** ` <br>
+run `g++ main.cpp Node.cpp Route.cpp Airport.cpp -o output` <br>
 
 
 run `./output`
