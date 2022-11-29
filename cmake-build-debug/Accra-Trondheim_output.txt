@@ -1,0 +1,5 @@
+1. KL from ACC to AMS 0 stops
+2. AZ from AMS to TRD 0 stops
+Total flights: 2
+Total additional stops: 0
+Optimality Criteria: Flights 

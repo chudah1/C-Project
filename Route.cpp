@@ -21,19 +21,39 @@ public:
         this->stops = nStops;
     }
 
+    /**
+     * This function returns the destination airport code
+     *
+     * @return The destination airport code.
+     */
     string getDestinationAirportCode() {
         return this->destinationAirportCode;
     }
 
+    /**
+     * This function returns the airline code of the flight
+     *
+     * @return The airline code.
+     */
     string getAirlineCode() {
         return this->airlineCode;
     }
 
+    /**
+     * `getStops()` returns the number of stops on the route
+     *
+     * @return The number of stops.
+     */
     int getStops() {
         return this->stops;
     }
 
 
+    /**
+     * It reads the routes.csv file and creates a map of string and vector of Route
+     *
+     * @return A map of string and vector of Route.
+     */
     static unordered_map<string, vector<Route>> readRoutes() {
         /* Creating a map of string and vector of Route. */
         unordered_map <string, vector<Route>> routeMap;

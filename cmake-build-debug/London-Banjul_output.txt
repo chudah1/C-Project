@@ -1,0 +1,5 @@
+1. FR from LTN to LPA 0 stops
+2. NT from LPA to BJL 0 stops
+Total flights: 2
+Total additional stops: 0
+Optimality Criteria: Flights 

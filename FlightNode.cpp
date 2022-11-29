@@ -126,7 +126,6 @@ public:
         while (current->sourceAirport != nullptr) {
             path = current->getAirlineCode() + " from " + current->getSourceAirport()->getState() + " to " +
                    current->state + " " + std::to_string(current->noOfStops) + " stops";
-            std::cout << path << std::endl;
             solution.push_back(path);
             current = current->sourceAirport;
         }

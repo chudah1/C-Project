@@ -1,6 +1,3 @@
-//
-// Created by USER on 11/17/2022.
-//
 using namespace std;
 
 #include <string>
@@ -11,7 +8,13 @@ using namespace std;
 #include <sstream>
 
 class Airport {
+
 public:
+    /**
+     * This function reads the airport.csv file and stores the airport codes and the city and country in a map
+     *
+     * @return A map of city and country to a vector of airport codes.
+     */
     static unordered_map<string, vector<string>> readAirports() {
         unordered_map <string, vector<string>> airportLocation;
         const string REGEX = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";

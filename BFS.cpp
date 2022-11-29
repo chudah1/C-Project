@@ -58,6 +58,14 @@ public:
         return contains(state, airportsInDest);
     }
 
+    /**
+     * This function takes in a string and a vector of strings and returns true if the string is in the vector
+     *
+     * @param state the state you want to search for
+     * @param airports a vector of strings that contains the names of the airports
+     *
+     * @return A boolean value.
+     */
     bool contains(std::string state, vector<std::string> airports) {
         for (auto &i: airports) {
             if (state == i) {
@@ -67,16 +75,15 @@ public:
         return false;
     }
 
-    bool contains(FlightNode node, deque<FlightNode> frontier) {
-        for (auto i: frontier) {
-            if (node == i) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-
+    /**
+     * The above function is a breadth first search algorithm. It takes in a starting airport and finds the shortest path
+     * to the destination airport.
+     *
+     * @param startCountryCity The country and city of the starting airport.
+     *
+     * @return a vector of Route objects.
+     */
     void bfs(std::string startCountryCity) {
         std::vector<std::string> availableAirports = Airports.at(startCountryCity);
 
@@ -102,10 +109,11 @@ public:
                 std::string airlineCode = succState.getAirlineCode();
                 int nstops = succState.getStops();
 
-                shared_ptr<FlightNode> childNode = make_shared<FlightNode>(airlineCode, destinationAirportCode,nstops + currentAirport->getNoOfStops(), currentAirport);
-                if (visited.count(childNode->getState())==0){
+                shared_ptr<FlightNode> childNode = make_shared<FlightNode>(airlineCode, destinationAirportCode,
+                                                                           nstops + currentAirport->getNoOfStops(),
+                                                                           currentAirport);
+                if (visited.count(childNode->getState()) == 0) {
                     if (foundDestination(childNode->getState())) {
-                        cout << "found destination\n";
                         childNode->solutionPath();
                         return;
                     }
