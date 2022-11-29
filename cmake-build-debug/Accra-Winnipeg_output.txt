@@ -1,0 +1,8 @@
+1. AA from DEN to DEN 0 stops
+2. AA from DEN to DEN 0 stops
+3. AA from DEN to DEN 0 stops
+4. AA from DEN to DEN 0 stops
+5. AC from DEN to YWG 0 stops
+Total flights: 5
+Total additional stops: 0
+Optimality Criteria: Flights 

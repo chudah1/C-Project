@@ -14,46 +14,82 @@ private:
     FlightNode *sourceAirport;
 public:
     FlightNode(std::string AirlineCode, std::string State, int stops, FlightNode *parent) {
-        airlineCode = AirlineCode;
-        state = State;
-        noOfStops = stops;
-        sourceAirport = parent;
+        this->airlineCode = AirlineCode;
+        this->state = State;
+        this->noOfStops = stops;
+        this->sourceAirport = parent;
     }
 
     FlightNode(std::string State) {
-        state = State;
-        airlineCode = "";
-        sourceAirport = NULL;
-        noOfStops = 0;
+        this->state = State;
+        this->airlineCode = "";
+        this->sourceAirport = nullptr;
+        this->noOfStops = 0;
     }
 
+    /**
+     * It returns the number of stops in the route
+     *
+     * @return The number of stops.
+     */
     int getNoOfStops() {
-        return noOfStops;
+        return this->noOfStops;
     }
 
+    /**
+     * This function returns the airline code
+     *
+     * @return The airline code.
+     */
     std::string getAirlineCode() {
-        return airlineCode;
+        return this->airlineCode;
     }
 
+    /**
+     * This function returns the state of the object
+     *
+     * @return The state variable is being returned.
+     */
     std::string getState() {
-        return state;
+        return this->state;
     }
 
+    /**
+     * This function returns the sourceAirport
+     *
+     * @return The sourceAirport variable is being returned.
+     */
     FlightNode *getSourceAirport() {
-        return sourceAirport;
+            return this->sourceAirport;
     }
 
+    /**
+     * The function returns true if the airlineCode, state, noOfStops and sourceAirport of the two FlightNodes are equal
+     *
+     * @param rhs The right hand side of the operator.
+     *
+     * @return a boolean value.
+     */
     bool operator==(const FlightNode &rhs) const {
         return airlineCode == rhs.airlineCode &&
                state == rhs.state &&
-               noOfStops == rhs.noOfStops &&
-               sourceAirport == rhs.sourceAirport;
+               noOfStops == rhs.noOfStops;
     }
 
+    /**
+     * It checks if the flight number is not equal to the flight number of the flight node.
+     *
+     * @param rhs The right hand side of the operator.
+     *
+     * @return The boolean value of the comparison of the two FlightNodes.
+     */
     bool operator!=(const FlightNode &rhs) const {
         return !(rhs == *this);
     }
 
+    /**
+     * This function is used to write the solution path to a file
+     */
     void solutionPath() {
         std::string startCity;
         std::string destinationCity;
@@ -80,16 +116,20 @@ public:
         }
         std::vector<std::string> solution;
         std::string path;
-        FlightNode current = *this;
-
-        while (current.sourceAirport != NULL) {
-            path = current.getAirlineCode() + " from " + current.getSourceAirport()->getState() + " to " +
-                   current.getState() + " " + std::to_string(current.getNoOfStops()) + " stops";
+        FlightNode* current = this;
+        int c = 0;
+        /* Getting the source airport of the current node and then pushing it to the solution vector. */
+        while (current != nullptr && c < 5) {
+            path = current->getAirlineCode() + " from " + current->getSourceAirport()->getState() + " to " + current->state + " " + std::to_string(current->noOfStops) + " stops";
             solution.push_back(path);
-            current = *current.getSourceAirport();
+            std::cout<<path <<std::endl;
+            current = current->sourceAirport;
+            if (current == current->sourceAirport){
+                std::cout << "Equal";
+            }
+            c ++;
         }
         std::reverse(solution.begin(), solution.end());
-
         try {
             std::ofstream pathFile(startCity + "-" + destinationCity + "_" + "output.txt");
             int number = 1;
@@ -101,7 +141,7 @@ public:
             pathFile << "Total additional stops: " + std::to_string(noOfStops) + "\n";
             pathFile << "Optimality Criteria: Flights \n";
             pathFile.close();
-
+            return;
         }
         catch (std::invalid_argument &e) {
             std::cerr << e.what() << std::endl;

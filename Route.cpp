@@ -16,21 +16,21 @@ private:
     int stops;
 public:
     Route(string destAirportCode, string airline, int nStops) {
-        destinationAirportCode = destAirportCode;
-        airlineCode = airline;
-        stops = nStops;
+        this->destinationAirportCode = destAirportCode;
+        this->airlineCode = airline;
+        this->stops = nStops;
     }
 
     string getDestinationAirportCode() {
-        return destinationAirportCode;
+        return this->destinationAirportCode;
     }
 
     string getAirlineCode() {
-        return airlineCode;
+        return this->airlineCode;
     }
 
     int getStops() {
-        return stops;
+        return this->stops;
     }
 
 

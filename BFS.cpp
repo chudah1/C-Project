@@ -17,8 +17,8 @@ public:
     std::unordered_map<std::string, std::vector<Route>> route;
     std::unordered_map<std::string, std::vector<std::string>> Airports;
 
-    Main(std::string destination) {
-        destinationAirport = destination;
+    explicit Main(std::string destination) {
+        this->destinationAirport = destination;
         Airports = Airport::readAirports();
         route = Route::readRoutes();
     }
@@ -27,10 +27,24 @@ public:
 public:
 
 
+    /**
+     * Given a state, return a vector of all possible successor states
+     *
+     * @param state The current state of the problem.
+     *
+     * @return A vector of routes.
+     */
     std::vector<Route> getSuccessorStates(std::string state) {
         return route.at(state);
     }
 
+    /**
+     * This function checks if the destination airport is in the state of the current airport
+     *
+     * @param state the current state of the search
+     *
+     * @return A boolean value.
+     */
     bool foundDestination(std::string state) {
         if (Airports.count(destinationAirport) == 0) {
             cout << "Specified destination does not exist" << endl;
@@ -50,7 +64,7 @@ public:
     }
 
     bool contains(FlightNode node, deque<FlightNode> frontier) {
-        for (auto &i: frontier) {
+        for (auto i: frontier) {
             if (node == i) {
                 return true;
             }
@@ -65,14 +79,14 @@ public:
         std::deque<FlightNode> frontier;
         std::set<std::string> visited;
         for (auto &state: availableAirports) {
-            FlightNode startNode = *new FlightNode(state);
+            FlightNode startNode = FlightNode(state);
             if (foundDestination(startNode.getState())) {
                 startNode.solutionPath();
                 return;
             }
             frontier.push_back(startNode);
         }
-
+        int c = 0;
         while (!frontier.empty()) {
             FlightNode currentAirport = frontier.front();
             frontier.pop_front();
@@ -80,15 +94,16 @@ public:
 
             if (route.count(currentAirport.getState()) == 0) continue;
             std::vector<Route> succStates = getSuccessorStates(currentAirport.getState());
-            for (auto &succState: succStates) {
+            std::cout << "Parent: " << currentAirport.getState() << endl;
+            for (auto succState: succStates) {
                 std::string destinationAirportCode = succState.getDestinationAirportCode();
                 std::string airlineCode = succState.getAirlineCode();
                 int nstops = succState.getStops();
 
-                FlightNode childNode = *new FlightNode(airlineCode, destinationAirportCode,
-                                                       nstops + currentAirport.getNoOfStops(), &currentAirport);
+                FlightNode childNode = FlightNode(airlineCode, destinationAirportCode,nstops + currentAirport.getNoOfStops(), &currentAirport);
                 if (visited.count(childNode.getState())==0 && !contains(childNode, frontier)){
                     if (foundDestination(childNode.getState())) {
+                        cout << "found destination";
                         childNode.solutionPath();
                         return;
                     }
